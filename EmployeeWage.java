@@ -1,6 +1,5 @@
-public class EmpWageBuilderObject
+public class EmpWageBuilderMethod
 {
-		
 		public static final int IS_FULL_TIME =1;
                 public static final int IS_PART_TIME =2;
 
@@ -8,8 +7,9 @@ public class EmpWageBuilderObject
                 private final int empRatePerHour ;
                 private final int numOfWorkingDays ;
                 private final int maxHoursPerMonth ;
-
-		EmpWageBuilderObject(String Company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
+		
+		
+		EmpWageBuilderMethod(String Company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
 		{
 		
 			this.Company = Company;
@@ -19,10 +19,11 @@ public class EmpWageBuilderObject
 		
 		}
 
-		public static void main(String[] args)
-		{	
+		
+
+		private int computeEmpWage()
+		{
 	
-			EmpWageBuilderObject dMart = new EmpWageBuilderObject("Dmart",20,20,100);
 			
 			int empHrs =0;
 			int empWage=0;
@@ -30,7 +31,8 @@ public class EmpWageBuilderObject
 			int TotalWorkingHours=0;
 			int day =0;
 			
-			while( day < dMart.numOfWorkingDays || TotalWorkingHours <= dMart.maxHoursPerMonth)
+			while( day < numOfWorkingDays || TotalWorkingHours <= maxHoursPerMonth)
+			
 			{	
 				double empCheck = Math.floor(Math.random() * 10 % 3 );
 				day++;
@@ -47,10 +49,21 @@ public class EmpWageBuilderObject
 				
 				}
 				TotalWorkingHours+=empHrs;	
-				empWage = empHrs*dMart.empRatePerHour;
+				empWage = empHrs * empRatePerHour;
 				TotalEmpWage+=empWage;
 			}	
-			System.out.println("Total Emp wage :"+ TotalEmpWage);
+			
+			return TotalEmpWage;	
+		
+		}
+
+		public static void main(String[] args)
+		{	
+			
+			EmpWageBuilderMethod dMart = new EmpWageBuilderMethod("Dmart",20,20,100);
+			EmpWageBuilderMethod Realiance = new EmpWageBuilderMethod("Realiance",30,20,80);
+			System.out.println("Total Emp wage :"+ Realiance.computeEmpWage());
+			System.out.println("Total Emp wage :"+ dMart.computeEmpWage());
 		}	
 
 	
