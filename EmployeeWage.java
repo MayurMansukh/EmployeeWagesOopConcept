@@ -1,57 +1,61 @@
-public class EmpWageBuilderObject
+public class EmployeeWage
 {
-		
-		public static final int IS_FULL_TIME =1;
-                public static final int IS_PART_TIME =2;
 
-                private final String Company;
-                private final int empRatePerHour ;
-                private final int numOfWorkingDays ;
-                private final int maxHoursPerMonth ;
+    public static final int IS_FULL_TIME =1;
+    public static final int IS_PART_TIME =2;
 
-		EmpWageBuilderObject(String Company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
-		{
-		
-			this.Company = Company;
-			this.empRatePerHour = empRatePerHour;
-			this.numOfWorkingDays = numOfWorkingDays;
-			this.maxHoursPerMonth = maxHoursPerMonth;
-		
-		}
+    private final String Company;
+    private final int empRatePerHour ;
+    private final int numOfWorkingDays ;
+    
 
-		public static void main(String[] args)
-		{	
-	
-			EmpWageBuilderObject dMart = new EmpWageBuilderObject("Dmart",20,20,100);
-	
-			int empHrs =0;
-			int empWage=0;
-			int TotalEmpWage=0;
-			int TotalWorkingHours=0;
-			int day =0;
-			
-			while( day < dMart.numOfWorkingDays || TotalWorkingHours <= dMart.maxHoursPerMonth)
-			{	
-				double empCheck = Math.floor(Math.random() * 10 % 3 );
-				day++;
-				switch ((int)empCheck)
-				{
-					case IS_FULL_TIME:
-						empHrs=8;
-						break;
-					case IS_PART_TIME:
-						empHrs=4;
-						break;	
-					default:
-						empHrs =0;	
-				
-				}
-				TotalWorkingHours+=empHrs;	
-				empWage = empHrs*dMart.empRatePerHour;
-				TotalEmpWage+=empWage;
-			}	
-			System.out.println("Total Emp wage :"+ TotalEmpWage);
-		}	
+    EmployeeWage(String Company, int empRatePerHour, int numOfWorkingDays)
+    {
 
-	
+        this.Company = Company;
+        this.empRatePerHour = empRatePerHour;
+        this.numOfWorkingDays = numOfWorkingDays;
+        
+
+    }
+
+    public static void main(String[] args)
+    {
+
+        EmployeeWage dMart = new EmployeeWage("Dmart",20,20);
+
+        int empHrs =0;
+        int TotalEmpWage=0;
+        int TotalWorkingHours=0;
+        int day =0;
+        int partTimeWage=0;
+        while( day < dMart.numOfWorkingDays)
+        {
+            double empCheck = Math.floor(Math.random() * 10 % 3 );
+            day++;
+            switch ((int)empCheck)
+            {
+                case IS_FULL_TIME:
+                    empHrs=12;
+                    break;
+                case IS_PART_TIME:
+                    empHrs=8;
+                    break;
+                default:
+                    empHrs =0;
+
+            }
+
+            TotalWorkingHours+=empHrs;
+            if (empCheck==IS_PART_TIME)
+            {
+                partTimeWage=empHrs*dMart.empRatePerHour;
+            }
+
+            TotalEmpWage+= partTimeWage;
+        }
+        System.out.println("Total Emp wage :"+ TotalEmpWage);
+    }
+
+
 }
