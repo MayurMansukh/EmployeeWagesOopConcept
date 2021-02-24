@@ -7,7 +7,7 @@ public class EmployeeWage
     private final String Company;
     private final int empRatePerHour ;
     private final int numOfWorkingDays ;
-    
+   
 
     EmployeeWage(String Company, int empRatePerHour, int numOfWorkingDays)
     {
@@ -25,11 +25,13 @@ public class EmployeeWage
         EmployeeWage dMart = new EmployeeWage("Dmart",20,20);
 
         int empHrs =0;
+        int empWage=0;
         int TotalEmpWage=0;
+        int TotalEmpWageP=0;
         int TotalWorkingHours=0;
         int day =0;
         int partTimeWage=0;
-        while( day < dMart.numOfWorkingDays)
+        while( day < dMart.numOfWorkingDays )
         {
             double empCheck = Math.floor(Math.random() * 10 % 3 );
             day++;
@@ -51,10 +53,13 @@ public class EmployeeWage
             {
                 partTimeWage=empHrs*dMart.empRatePerHour;
             }
-
-            TotalEmpWage+= partTimeWage;
+            empWage = empHrs*dMart.empRatePerHour;
+            TotalEmpWageP+= partTimeWage;
+            TotalEmpWage+= empWage;
         }
-        System.out.println("Total Emp wage :"+ TotalEmpWage);
+        System.out.println("Total partTime Emp wage :"+ TotalEmpWageP);
+        System.out.println("Total FullTime Emp wage :"+ TotalEmpWage);
+
     }
 
 
